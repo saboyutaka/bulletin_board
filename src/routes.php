@@ -7,11 +7,11 @@ use Slim\Http\Response;
 
 $app->get('/', function(Request $request, Response $response, array $args) {
 
-    $comments = [
-        ["name" => "hoge", "body" => "hogehgoe", "created_at" => date('Y/m/d H:i:s')],
-        ["name" => "fuga", "body" => "fugafuga", "created_at" => date('Y/m/d H:i:s')],
-        ["name" => "fizz", "body" => "fizzfizz", "created_at" => date('Y/m/d H:i:s')]
-    ];
+    $sql = 'SELECT * FROM comments ORDER BY created_at DESC';
+    $query = $this->db->prepare($sql);
+    $query->execute();
+
+    $comments = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $this->renderer->render($response, 'index.php', compact("comments"));
 });
