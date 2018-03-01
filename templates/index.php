@@ -21,15 +21,15 @@
   <h1>けいじばん</h1>
   <div class="card bg-light">
     <div class="card-body">
-      <form>
+      <form action="/" method="post">
         <div class="form-group">
           <label for="name">なまえ</label>
-          <input type="text" class="form-control" id="name" placeholder="なまえをにゅうりょくしてね">
-          <small id="emailHelp" class="form-text text-muted">にゅうりょくしないばあい、名無しさんになります</small>
+          <input type="text" class="form-control" id="name" name="name" placeholder="なまえをにゅうりょくしてね">
+          <small class="form-text text-muted">にゅうりょくしないばあい、名無しさんになります</small>
         </div>
         <div class="form-group">
           <label for="body">ほんぶん</label>
-          <input type="text" class="form-control" id="body" placeholder="ほんぶんをにゅうりょくしてね" required>
+          <input type="text" class="form-control" id="body" name="body" placeholder="ほんぶんをにゅうりょくしてね" required>
         </div>
         <button type="submit" class="btn btn-primary">そうしん</button>
       </form>

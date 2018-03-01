@@ -17,5 +17,13 @@ $app->get('/', function(Request $request, Response $response, array $args) {
 });
 
 $app->post('/', function(Request $request, Response $response) {
-    return $this->renderer->render($response, 'index.php');
+    $body = $request->getParsedBody();
+    $name = $body['name'] ?: "名無し";
+    $body = $body['body'];
+
+    $params = ["name" => $name, "body" => $body];
+    $stmt = $this->db->prepare("INSERT INTO comments (name, body) VALUES (:name, :body)");
+    $stmt->execute($params);
+
+    return $response->withRedirect('/');
 });
