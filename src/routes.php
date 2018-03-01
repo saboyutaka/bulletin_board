@@ -5,10 +5,17 @@ use Slim\Http\Response;
 
 // Routes
 
-$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+$app->get('/', function(Request $request, Response $response, array $args) {
 
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
+    $comments = [
+        ["name" => "hoge", "body" => "hogehgoe", "created_at" => date('Y/m/d H:i:s')],
+        ["name" => "fuga", "body" => "fugafuga", "created_at" => date('Y/m/d H:i:s')],
+        ["name" => "fizz", "body" => "fizzfizz", "created_at" => date('Y/m/d H:i:s')]
+    ];
+
+    return $this->renderer->render($response, 'index.php', compact("comments"));
+});
+
+$app->post('/', function(Request $request, Response $response) {
+    return $this->renderer->render($response, 'index.php');
 });
